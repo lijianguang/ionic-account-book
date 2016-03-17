@@ -1,0 +1,33 @@
+<ion-view view-title="出库记录">
+ <div id="search-box" class="bar bar-subheader item-input-inset">
+        <div class="item-input-wrapper">
+          <i class="clear-search icon ion-ios-search"></i>
+          <div style="width:90%;" ng-click="selectDate()"><input readonly="readonly" type="search" placeholder="日期"  ng-model="paging.keyword"></div>
+          <i ng-show="paging.keyword" ng-click="doClear()" class="clear-search icon ion-ios-close-empty"></i>
+        </div>
+        <!-- <button class="button button-clear">
+          Cancel
+        </button> -->
+      </div>
+    <ion-content class="has-header has-subheader">
+        <!-- <div class="bar bar-header">
+          <button class="button button-clear button-default" ng-click="closeListModal()"><i class="icon ion-ios-close-empty"></i></button>
+        </div> -->
+        <ion-refresher pulling-text="刷新" on-refresh="paging.doRefresh()"></ion-refresher>
+        <ion-list>
+          <ion-item ng-click="goDetail(r)"  class="item-icon-right" ng-repeat="r in recordList">{{r.recordDate}}
+            <span class="item-note text-nowrap" style="width:40%;">{{r.remarks}}</span>
+            <!-- <ion-option-button class="button-calm"
+                       ng-click="edit(r)">
+              Edit
+            </ion-option-button> -->
+            <ion-option-button class="button-assertive"
+                               ng-click="del(r)">
+              删除
+            </ion-option-button>
+            <i class="icon ion-ios-arrow-right"></i>
+          </ion-item>
+        </ion-list>
+        <ion-infinite-scroll ng-if="paging.isMore" on-infinite="paging.loadMore()" distance="2%"></ion-infinite-scroll>
+    </ion-content>
+  </ion-view>

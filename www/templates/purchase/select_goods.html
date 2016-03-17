@@ -1,0 +1,95 @@
+
+  <style>
+    
+    .list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+.col input{
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+  </style>
+<ion-modal-view>
+    <ion-nav-bar class="bar-stable bar bar-header">
+    <ion-nav-title>
+      <span>选择商品</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+    <button class="button button-clear button-default" ng-click="closeModal()"><i class="icon ion-ios-close-empty"></i></button>
+    </ion-nav-buttons>
+
+  </ion-nav-bar>
+  <div class="row bar bar-subheader">
+            <div class="col">商品</div>
+            <div class="col">价格</div>
+            <div class="col">数量</div>
+            <div class="col">合计</div>
+          </div>
+    <ion-content class="has-header has-subheader has-footer">
+
+      <ion-list>
+        <ion-item style="padding:5px !important;" ng-repeat="g in selectedGoods">
+          <div class="row">
+            <div class="col" style="padding-top:4%;"><span style="">{{g.name}}</span></div>
+            <div class="col"><input ng-change="editItem(g)" type="number" step="0.01" ng-model="g.price" ng-value="g.price||0"/></div>
+
+            <div class="col">
+              <div class="row" style="padding:0px;">
+              <div class="col col-60" style="padding:0px;"><input style="" ng-change="editItem(g)" ng-init="g.count=g.count||0" type="number" step="1" ng-model="g.count"/></div>
+              <div class="col"><div style="padding-top:4px;">{{g.gunit}}</div></div>
+              </div>
+            
+
+            </div>
+
+            <div class="col"><input ng-init="g.amount=g.amount||0" type="number" step="0.01" ng-model="g.amount" readonly="readonly" style="background-color:transparent;"/></div>
+          </div>
+          
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    <ion-side-tab class="default-bg" style="
+    padding:1px !important;
+    background-color:#ddd;
+    z-index:99;
+    ">
+      <ion-side-tab-handle width="40" height="50" toggle="ion-chevron-left ion-chevron-right" class="dark-bg stable" style="border-radius: 10px 0 0 10px ;
+     filter:alpha(opacity=30);  
+      -moz-opacity:0.3;  
+      -khtml-opacity: 0.3;  
+      opacity: 0.3;  "><i class="icon ion-chevron-left"></i></ion-side-tab-handle>
+       <div class="scroll" style="height: 100%;overflow-x:hidden;overflow-y:auto;">
+         <ion-list >
+        <div ng-repeat="group in categoryList">
+          <ion-item class="item-stable"
+                    ng-click="toggleGroup(group)"
+                    ng-class="{active: isGroupShown(group)}">
+              <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+            {{group.name}}
+          </ion-item>
+          <ion-checkbox ng-click="selectDone(item,isChecked)" ng-model="isChecked" class="item-accordion"
+                    ng-repeat="item in goodsList | filter:{categoryId:group.id}"
+                    ng-show="isGroupShown(group)">
+            {{item.name}}
+          </ion-checkbox>
+          <!-- <ion-checkbox ng-model="filter.blue">Red</ion-checkbox> -->
+        </div>
+      </ion-list>
+       </div>
+       
+    </ion-side-tab>
+    <div class="bar bar-footer button-bar">
+      <button class="button button-positive" ng-click="done()">完成</button>
+    </div>
+  </ion-modal-view>

@@ -1,0 +1,25 @@
+<ion-view>
+  <ion-nav-bar class="bar-stable bar bar-header">
+  <ion-nav-back-button class="button" side="left"></ion-nav-back-button>
+    <ion-nav-title>
+      <span>分类列表</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+    <button class="button button-clear button-default" ng-click="insert()"><i class="icon ion-ios-plus-empty"></i></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <ion-list>
+    	<ion-item ng-repeat="c in categoryList">{{c.name}}
+    		<ion-option-button class="button-calm"
+                       ng-click="edit(c)">
+      编辑
+    </ion-option-button>
+    <ion-option-button class="button-assertive"
+                       ng-click="del(c)">
+      删除
+    </ion-option-button>
+    	</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

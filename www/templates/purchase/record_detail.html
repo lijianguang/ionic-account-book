@@ -1,0 +1,61 @@
+
+  <style>
+    .row{
+      padding:15px;
+    }
+    .row .col{
+      padding:0px;
+    }
+    
+  </style>
+<ion-modal-view>
+    <ion-nav-bar class="bar-stable bar bar-header">
+    <ion-nav-title>
+      <span>记录详情</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+     <button class="button button-clear button-default" ng-click="closeModal()"><i class="icon ion-ios-close-empty"></i></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+    <ion-content class="has-header">
+        <!-- <div class="bar bar-header">
+          <button class="button button-clear button-default" ng-click="closeListModal()"><i class="icon ion-ios-close-empty"></i></button>
+        </div> -->
+
+        <ion-list>
+          <ion-item>
+          <div class="row">
+              <div class="col">商品数量</div>
+              <div class="col">{{currentRecord.items.length}}件</div>
+            </div>
+            <div class="row">
+              <div class="col">实付金额</div>
+              <div class="col">{{currentRecord.actualAmount | currency:'￥'}}</div>
+            </div>
+            <div class="row">
+              <div class="col">记录日期</div>
+              <div class="col">{{currentRecord.recordDate}}</div>
+            </div>
+            <div class="row">
+              <div class="col">操作时间</div>
+              <div class="col">{{currentRecord.createTime}}</div>
+            </div>
+            <div class="row">
+              <div class="col">备注</div>
+              <div class="col item-text-wrap">{{currentRecord.remarks}}</div>
+            </div>
+          </ion-item>
+          
+        </ion-list>
+        <div class="card" ng-repeat="i in currentRecord.items">
+              <div class="item item-divider">
+                <span>{{i.name}}</span>
+                <span class="item-note">实付:{{((i.actualPrice*100)*i.PTCount)/100 | currency:'￥'}}</span>
+              </div>
+              <div class="item">
+                <span class="">单价：{{i.actualPrice | currency:'￥'}}/{{i.gunit}}</span>
+                <span class="item-note">数量：{{i.PTCount}}</span>
+              </div>
+            </div>
+    </ion-content>
+  </ion-modal-view>

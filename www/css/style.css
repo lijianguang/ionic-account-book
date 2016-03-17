@@ -1,0 +1,29 @@
+/* Empty. Add your own CSS if you like */
+.clear-search {
+  font-size: 18px;
+}
+#search-box{
+	padding:9px;
+	margin-bottom: 7px;
+}
+
+form[name='addForm'] input,
+form[name='purchaseForm'] input
+ {
+	text-align:right;
+}
+.form-input-date {
+	background-color: transparent !important;
+}
+.bg-transparent{
+	background-color: transparent !important;
+}
+.button-footer-two{
+	width:49%;
+}
+.text-nowrap{
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+	width:20px;
+}

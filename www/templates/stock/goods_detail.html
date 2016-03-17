@@ -1,0 +1,78 @@
+
+<style type="text/css">
+  .detail-header .row,
+  .detail-header .row .col
+  {
+    padding:5px !important;
+  }
+  .detail-content .row,
+  .detail-content .row .col
+  {
+    padding:2px !important;
+  }
+</style>
+<ion-modal-view>
+    <ion-nav-bar class="bar-stable bar bar-header" style="display:block !important;">
+    <ion-nav-title>
+      <span>库存详情</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+    <button class="button button-clear button-default" ng-click="closeModal()"><i class="icon ion-ios-close-empty"></i></button>
+    </ion-nav-buttons>
+
+  </ion-nav-bar>
+    <ion-content class="has-header">
+      <ion-list>
+        <ion-item class="detail-header">
+          <div class="row">
+            <div class="col col-40">商品</div>
+            <div class="col">{{goodsDetail.name}}</div>
+          </div>
+          <div class="row">
+            <div class="col col-40">入库</div>
+            <div class="col">{{goodsDetail.PCCount | number:2}} {{goodsDetail.gunit}}</div>
+          </div>
+          <div class="row">
+            <div class="col col-40">出库</div>
+            <div class="col">{{goodsDetail.TOCount  | number:2}} {{goodsDetail.gunit}}</div>
+          </div>
+          <div class="row">
+            <div class="col col-40">库存</div>
+            <div class="col {{goodsDetail.PCCount<goodsDetail.TOCount?'assertive':goodsDetail.PCCount==goodsDetail.TOCount?'energized':'balanced'}}">{{goodsDetail.PCCount-goodsDetail.TOCount  | number:2}} {{goodsDetail.gunit}}</div>
+          </div>
+          <!-- <div class="row">
+            <div class="col col-20"></div>
+            <div class="col"></div>
+          </div> -->
+        </ion-item>
+        <ion-item ng-repeat="d in goodsDetail.recordList">
+          <ion-list>
+          <ion-item>{{d.recordDate}}<span class="item-note {{d.otype==0?'assertive':'balanced'}}">{{d.otype==0?'出库':'入库'}} {{d.PTCount}} {{goodsDetail.gunit}}</span></ion-item>
+            <ion-item class="detail-content">
+              <div class="row" ng-show="d.otype==1">
+                <div class="col col-20">价格</div>
+                <div class="col col-20">{{d.actualPrice | currency:'￥'}}</div>
+                <div class="col col-20"></div>
+                <div class="col col-20">合计</div>
+                <div class="col ">{{(d.actualPrice*100)*d.PTCount/100 | currency:'￥'}}</div>
+              </div>
+              <div class="row">
+                <div class="col col-40">操作时间</div>
+                <div class="col">{{d.createTime}}</div>
+              </div>
+              <div class="row item-text-wrap">
+                <div class="col col-40">备注</div>
+                <div class="col">{{d.remarks}}</div>
+              </div>
+            </ion-item>
+          </ion-list>
+         <!--  <div class="row">
+            <div class="col">{{d.recordDate}}</div>
+            <div class="col">{{d.otype==0?'出库':'入库'}}</div>
+            <div class="col">{{d.PTCount}}</div>
+            <div class="col">{{d.actualPrice}}</div>
+          </div> -->
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-modal-view>

@@ -1,0 +1,48 @@
+<ion-view view-title="入库单">
+  <ion-content>
+
+  <form name="purchaseForm" ng-submit="doPurchase()">
+    <div class="list card">
+         <div class="item item-input" ng-click="selectDate()" >
+          <span class="input-label">日期</span>
+          <input class="form-input-date" type="text" ng-model="record.date" readonly="readonly" />
+        </div>
+      </div>
+
+      <div class="list card">
+        <div class="item item-input item-icon-right" ng-click="selectGoods()" >
+          <span class="input-label">选择商品</span>
+          <input class="" type="hidden" ng-model="record.goods" />
+          <span class="item-note">已选{{selectedGoods.length}}件</span>
+          <i class="icon ion-ios-arrow-right"></i>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-input item-icon-right" >
+          <span class="input-label">应付款</span>
+          <input class="bg-transparent" type="text" readonly="readonly" ng-model="record.shouldAmount" />
+        </div>
+        <div class="item item-input item-icon-right">
+          <span class="input-label">实付款</span>
+          <input class="" type="number" step="0.01" ng-model="record.actualAmount" />
+        </div>
+      </div>
+
+
+      <div class="list card">
+        <div class="item item-input item-icon-right" >
+          <span class="input-label">备注</span>
+          <input class="" type="text" ng-model="record.remarks" />
+        </div>
+      </div>
+
+      <div class="list">
+        <label class="item">
+          <button ng-disabled="purchaseForm.$invalid" class="button button-block button-positive" type="submit">确认</button>
+        </label>
+      </div>
+  </form>
+      
+  </ion-content>
+</ion-view>

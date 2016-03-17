@@ -1,0 +1,65 @@
+<ion-modal-view>
+<ion-nav-bar class="bar-stable bar bar-header">
+  <ion-nav-back-button class="button" side="left"></ion-nav-back-button>
+    <ion-nav-title>
+      <span>{{goods.id?'编辑':'添加'}}商品</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+    <button class="button button-clear button-default" ng-click="closeModal()"><i class="icon ion-ios-close-empty"></i></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+	<ion-content class="has-header">
+		<form name="addForm" ng-submit="doSomeThing()">
+	      <div class="list">
+	        <label class="item item-input">
+	          <span class="input-label">商品名称</span>
+	          <input name="name" type="text" ng-model="goods.name" required>
+	        </label>
+	        <label class="item item-input">
+	          <span class="input-label">规格</span>
+	          <input name="format" type="text" ng-model="goods.format">
+	        </label>
+	        <label class="item item-input">
+	          <span class="input-label">计量单位</span>
+	          <input name="unit" type="text" ng-model="goods.unit" required>
+	        </label>
+	        <!-- <label class="item item-input">
+	          <span class="input-label">分类</span>
+	          <input name="category" type="text" ng-model="goods.category">
+	        </label> -->
+	        <label class="item item-input item-select">
+			    <div class="input-label">
+			      分类
+			    </div>
+			    <select name="category" ng-model="goods.category" ng-options="item.name for item in categoryList track by item.id"  required>
+			    <!--   -->
+			    	<option value="">选择分类</option>
+			      <option ng-repeat="c in categoryList" ng-value="c.id" ng-selected="c.id==goods.category">{{c.name}}</option>
+			    </select>
+			  </label>
+	        <label class="item item-input">
+	          <span class="input-label">价格</span>
+	          <input name="price" type="number" ng-model="goods.price" step="0.01" required>
+
+	        </label>
+	        <!-- <label class="item item-input">
+	          <span class="input-label">备注</span>
+	          <input name="remarks" type="text" ng-model="goods.remarks">
+	          <textarea name="remarks"  ng-model="goods.remarks" placeholder="在此输入备注事项"></textarea>
+	        </label> -->
+	        <label class="item">
+	          <button ng-disabled="addForm.$invalid" class="button button-block button-positive" type="submit">保存</button>
+	        </label>
+	        <label ng-show="addForm.$dirty && addForm.$invalid" class="item">
+	        	<i class="icon ion-alert-circled energized"></i>
+	        	<label class="assertive">
+	        		<span ng-if="addForm.name.$dirty && addForm.name.$invalid">名称是必须的</span>
+	        		<span ng-if="addForm.unit.$dirty && addForm.unit.$invalid">单位是必须的</span>
+	        		<span ng-if="addForm.price.$dirty && addForm.price.$invalid">价格是必须的</span>
+	        		<span ng-if="addForm.category.$dirty && !goods.category.id">请选择分类</span>
+	        	</label>
+	        </label>
+	      </div>
+	    </form>
+	</ion-content>
+</ion-modal-view>

@@ -1,0 +1,21 @@
+{
+  "name": "ionic-sidetab",
+  "description": "Ionic Sidetabs",
+  "version": "1.1.0",
+  "homepage": "http://arielfaur.github.io/ionic-sidetabs",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "ionic": "~1.0.x"
+  },
+  "_release": "1.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.1.0",
+    "commit": "608e5534b1120152de0a0ebc5d674f03717796c7"
+  },
+  "_source": "git://github.com/arielfaur/ionic-sidetabs.git",
+  "_target": "^1.1.0",
+  "_originalSource": "ionic-sidetabs",
+  "_direct": true
+}
